@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AspNetMvcNinjectFluentValidation.Models;
 
 namespace AspNetMvcNinjectFluentValidation.Controllers
 {
@@ -26,5 +27,22 @@ namespace AspNetMvcNinjectFluentValidation.Controllers
 
             return View();
         }
+
+        public ActionResult GetProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetProduct(Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Hata", JsonRequestBehavior.AllowGet);
+            }
+
+            return View();
+        }
+
     }
 }
