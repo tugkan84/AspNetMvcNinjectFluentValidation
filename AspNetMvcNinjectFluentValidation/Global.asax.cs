@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FluentValidation.Mvc;
+using AspNetMvcNinjectFluentValidation.FluentValidation;
 
 namespace AspNetMvcNinjectFluentValidation
 {
@@ -16,6 +18,10 @@ namespace AspNetMvcNinjectFluentValidation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            FluentValidationModelValidatorProvider.Configure(provider => {
+                provider.ValidatorFactory = new ValidationFactory(new ValidationModule());
+            });
         }
     }
 }
